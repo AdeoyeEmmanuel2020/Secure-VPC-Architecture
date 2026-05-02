@@ -839,23 +839,27 @@ By completing this project, you demonstrate proficiency in:
 - Routing and route table configuration <br>
 - Internet Gateway and NAT Gateway usage <br>
 - Multi-AZ deployment strategies
+  
 **Security** <br>
 - Defense-in-depth principles
 - Security group chaining
 - Network ACL configuration
 - Least privilege access control
 - Network segmentation
+  
 **Monitoring & Compliance** <br>
 - VPC Flow Logs implementation
 - CloudWatch Logs integration
 - Security monitoring and auditing
 - Compliance logging (PCI-DSS, HIPAA)
+  
 **Infrastructure as Code**
 - Terraform best practices
 - Module organisation
 - Variable management
 - State management
 - Resource dependencies
+  
 **Cloud Architecture**
 - High availability design
 - Fault tolerance
