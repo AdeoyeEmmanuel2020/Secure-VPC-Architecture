@@ -12,8 +12,7 @@ A production-grade, secure VPC implementation on AWS using Terraform, demonstrat
 [![Flow Logs](https://img.shields.io/badge/Flow%20Logs-Enabled-blueviolet)]() 
 [![Multi-AZ](https://img.shields.io/badge/Multi--AZ-High%20Availability-green)]()
 
-----
-## Table of Contents
+# Table of Contents
 
 - [Overview](#overview)
 - [Architecture](#architecture)
@@ -32,16 +31,16 @@ A production-grade, secure VPC implementation on AWS using Terraform, demonstrat
 - [Contributing](#contributing)
 - [License](#license)
 ----
-## Overview
-This project implements a three-tier, highly available VPC architecture on AWS using Terraform. It demonstrates enterprise-level network security practices including network segmentation, defence-in-depth security, and comprehensive monitoring.
+# Overview
+This project implements a **three-tier, highly available VPC architecture** on AWS using Terraform. It demonstrates enterprise-level network security practices, including network segmentation, defence-in-depth security, and comprehensive monitoring.
 
-**Key Highlights**
-**Multi-tier Architecture:** Public, Private, and Database subnet layers
-**High Availability:** Resources deployed across 2 Availability Zones
-**Defence in Depth:** Multiple security layers (NACLs, Security Groups, Flow Logs)
-**Full Observability:** VPC Flow Logs with CloudWatch integration
-**Infrastructure as Code:** 100% automated with Terraform
-**Cost Optimized:** Optional NAT Gateway deployment for dev environments
+**Key Highlights** <br>
+**Multi-tier Architecture:** Public, Private, and Database subnet layers <br>
+**High Availability:** Resources deployed across 2 Availability Zones <br>
+**Defence in Depth:** Multiple security layers (NACLs, Security Groups, Flow Logs) <br>
+**Full Observability:** VPC Flow Logs with CloudWatch integration <br>
+**Infrastructure as Code:** 100% automated with Terraform <br>
+**Cost Optimised:** Optional NAT Gateway deployment for dev environments
 
 ------
 ## Architecture Overview
@@ -59,13 +58,13 @@ This project implements a three-tier network architecture with:
 -------
 
 ## Features
-**Network Architecture**
-VPC: Isolated virtual network (10.0.0.0/16)
-6 Subnets: 2 public, 2 private, 2 database (across 2 AZs)
-Internet Gateway: Public internet access for public subnets
-2 NAT Gateways: Secure outbound internet for private subnets
-7 Route Tables: Proper traffic routing per subnet tier
-Multi-AZ Deployment: High availability and fault tolerance
+**Network Architecture** <br>
+**VPC:** Isolated virtual network (10.0.0.0/16) <br>
+**6 Subnets:** 2 public, 2 private, 2 database (across 2 AZs) <br>
+**Internet Gateway:** Public internet access for public subnets <br>
+**2 NAT Gateways:** Secure outbound internet for private subnets <br>
+**7 Route Tables:** Proper traffic routing per subnet tier <br>
+**Multi-AZ Deployment:** High availability and fault tolerance
 
 **Security Features**
 Security Group Chaining: Least-privilege access between tiers
@@ -334,29 +333,34 @@ Bastion Host Ready: Security group prepared for jump box
 |VPC Flow Logs|	|-|	~$0.50/GB|	$5-10|
 |CloudWatch Logs|	-|	$0.03/GB (storage)|	$2-5|
 | | |TOTAL|	~$72-80/month
-Cost Optimization Strategies
-Development/Testing (Minimal Cost)
-hcl
 
-# In terraform.tfvars
+
+**Cost Optimisation Strategies**
+**Development/Testing (Minimal Cost)**
+```bash
+
+#In terraform.tfvars
 enable_nat_gateway = false  # Saves ~$65/month
 enable_flow_logs   = false  # Saves ~$7/month
-Dev Environment Cost: ~$0/month (only free-tier resources)
+```
+**Dev Environment Cost: ~$0/month (only free-tier resources)**
 
-Production (Full Features)
-hcl
+**Production (Full Features)**
+```bash
 
 enable_nat_gateway = true   # Required for security
 enable_flow_logs   = true   # Required for compliance
-Production Cost: ~$75/month
+```
+**Production Cost: ~$75/month**
 
-Additional Cost Considerations
+**Additional Cost Considerations**
 NAT Gateway Data Processing: $0.045 per GB processed
 Data Transfer: $0.09 per GB outbound (after 1 GB free)
 CloudWatch Logs Ingestion: First 5GB free, then $0.50/GB
 Flow Logs Storage: $0.03 per GB stored
-Cost Monitoring
-Bash
+
+**Cost Monitoring**
+```bash
 
 # View estimated costs before deployment
 terraform plan -out=plan.tfplan
@@ -368,10 +372,11 @@ aws ce get-cost-and-usage \
   --granularity MONTHLY \
   --metrics "BlendedCost" "UnblendedCost" \
   --group-by Type=DIMENSION,Key=SERVICE
-📖 Deployment Guide
-Step-by-Step Deployment
-Step 1: Preparation
-Bash
+```
+## Deployment Guide
+**Step-by-Step Deployment**
+**Step 1: Preparation**
+```bash
 
 # Clone repository
 git clone https://github.com/YOUR-USERNAME/secure-vpc-project.git
@@ -386,24 +391,28 @@ aws configure
 
 # Verify AWS credentials
 aws sts get-caller-identity
-Step 2: Initialize Terraform
-Bash
+```
+
+**Step 2: Initialize Terraform**
+```bash
 
 # Download provider plugins and initialize backend
 terraform init
 
 # Expected output:
 # Terraform has been successfully initialized!
-Step 3: Validate Configuration
-Bash
+```
+**Step 3: Validate Configuration**
+```bash
 
 # Check syntax and configuration
 terraform validate
 
 # Expected output:
 # Success! The configuration is valid.
-Step 4: Review Execution Plan
-Bash
+```
+**Step 4: Review Execution Plan**
+```bash
 
 # Preview changes
 terraform plan
@@ -413,15 +422,16 @@ terraform plan
 # - 6 Subnets to be created
 # - 2 NAT Gateways to be created
 # - Security groups, route tables, etc.
-Key things to verify in plan:
+```
+**Key things to verify in plan:**
+VPC CIDR: 10.0.0.0/16
+Subnets: 6 total (2 per tier, 2 AZs)
+NAT Gateways: 2 (one per AZ)
+Security Groups: 4 (ALB, App, DB, Bastion)
+Flow Logs: Enabled
 
-✅ VPC CIDR: 10.0.0.0/16
-✅ Subnets: 6 total (2 per tier, 2 AZs)
-✅ NAT Gateways: 2 (one per AZ)
-✅ Security Groups: 4 (ALB, App, DB, Bastion)
-✅ Flow Logs: Enabled
-Step 5: Deploy Infrastructure
-Bash
+**Step 5: Deploy Infrastructure**
+```bash
 
 # Apply configuration
 terraform apply
@@ -430,14 +440,17 @@ terraform apply
 # Type 'yes' to confirm
 
 # Wait 3-5 minutes for creation
-Deployment Timeline:
+```
+**Deployment Timeline:**
 
 VPC, Subnets, IGW: ~30 seconds
 NAT Gateways, EIPs: ~2-3 minutes
 Security Groups, NACLs: ~30 seconds
 Flow Logs, IAM: ~1 minute
-Step 6: Verify Outputs
-Bash
+
+
+**Step 6: Verify Outputs**
+```bash
 
 # Display all outputs
 terraform output
@@ -448,58 +461,65 @@ terraform output public_subnet_ids
 
 # Export output to file
 terraform output -json > outputs.json
-AWS Console Verification
-1. VPC Verification
-text
+```
+
+**AWS Console Verification**
+**1. VPC Verification**
+```bash
 
 1. Go to AWS Console → VPC Dashboard
 2. Click "Your VPCs"
 3. Find: secure-vpc-dev
 4. Verify:
-   ✅ CIDR: 10.0.0.0/16
-   ✅ DNS hostnames: Enabled
-   ✅ DNS resolution: Enabled
-2. Subnet Verification
-text
+   CIDR: 10.0.0.0/16
+   DNS hostnames: Enabled
+   DNS resolution: Enabled
+```
+**2. Subnet Verification**
+```bash
 
 1. Click "Subnets"
 2. Filter by VPC: secure-vpc-dev
 3. Verify 6 subnets:
-   ✅ public-subnet-1 (10.0.1.0/24, us-east-1a)
-   ✅ public-subnet-2 (10.0.2.0/24, us-east-1b)
-   ✅ private-subnet-1 (10.0.11.0/24, us-east-1a)
-   ✅ private-subnet-2 (10.0.12.0/24, us-east-1b)
-   ✅ database-subnet-1 (10.0.21.0/24, us-east-1a)
-   ✅ database-subnet-2 (10.0.22.0/24, us-east-1b)
-3. NAT Gateway Verification
-text
+   public-subnet-1 (10.0.1.0/24, us-east-1a)
+   public-subnet-2 (10.0.2.0/24, us-east-1b)
+   private-subnet-1 (10.0.11.0/24, us-east-1a)
+   private-subnet-2 (10.0.12.0/24, us-east-1b)
+   database-subnet-1 (10.0.21.0/24, us-east-1a)
+   database-subnet-2 (10.0.22.0/24, us-east-1b)
+```
+**3. NAT Gateway Verification**
+```bash
 
 1. Click "NAT Gateways"
 2. Verify 2 NAT Gateways:
-   ✅ nat-gateway-1 in public-subnet-1
-   ✅ nat-gateway-2 in public-subnet-2
-   ✅ Status: Available
-   ✅ Each has an Elastic IP
-4. Route Table Verification
-text
+   nat-gateway-1 in public-subnet-1
+   nat-gateway-2 in public-subnet-2
+   Status: Available
+   Each has an Elastic IP
+```
+**
+**4. Route Table Verification**
+```bash
 
 1. Click "Route Tables"
 2. Filter by VPC
 3. Verify routing:
 
 Public Route Table:
-   ✅ 0.0.0.0/0 → Internet Gateway
-   ✅ Associated with public subnets
+   0.0.0.0/0 → Internet Gateway
+   Associated with public subnets
 
 Private Route Tables (2):
-   ✅ 0.0.0.0/0 → NAT Gateway (respective AZ)
-   ✅ Associated with private subnets
+   0.0.0.0/0 → NAT Gateway (respective AZ)
+   Associated with private subnets
 
 Database Route Tables (2):
-   ✅ Only local route (10.0.0.0/16)
-   ✅ No internet route
-5. Security Group Verification
-text
+   Only local route (10.0.0.0/16)
+   No internet route
+```
+**5. Security Group Verification**
+```bash
 
 1. Click "Security Groups"
 2. Find 4 security groups
@@ -507,26 +527,28 @@ text
 
 ALB Security Group:
    Inbound:
-   ✅ Port 443 from 0.0.0.0/0
-   ✅ Port 80 from 0.0.0.0/0
+   Port 443 from 0.0.0.0/0
+   Port 80 from 0.0.0.0/0
 
 App Security Group:
    Inbound:
-   ✅ Port 8080 from ALB SG only
+   Port 8080 from ALB SG only
 
 Database Security Group:
    Inbound:
-   ✅ Port 5432 from App SG only
-6. VPC Flow Logs Verification
-text
+   Port 5432 from App SG only
+```
+
+**6. VPC Flow Logs Verification**
+```bash
 
 1. Go to CloudWatch → Log Groups
 2. Find: /aws/vpc/flow-logs/secure-vpc-dev
 3. Verify:
-   ✅ Log group exists
-   ✅ Retention: 30 days
-   ✅ Log streams appear (after 5-10 min)
-
+   Log group exists
+   Retention: 30 days
+   Log streams appear (after 5-10 min)
+```
 
 
 
