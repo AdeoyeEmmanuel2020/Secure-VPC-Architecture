@@ -838,14 +838,14 @@ By completing this project, you demonstrate proficiency in:
 - Subnet planning and CIDR notation <br>
 - Routing and route table configuration <br>
 - Internet Gateway and NAT Gateway usage <br>
-- Multi-AZ deployment strategies <br>
+- Multi-AZ deployment strategies
 **Security** <br>
 - Defense-in-depth principles
 - Security group chaining
 - Network ACL configuration
 - Least privilege access control
 - Network segmentation
-**Monitoring & Compliance**
+**Monitoring & Compliance** <br>
 - VPC Flow Logs implementation
 - CloudWatch Logs integration
 - Security monitoring and auditing
