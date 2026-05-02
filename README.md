@@ -1,6 +1,6 @@
 # Secure VPC Architecture - AWS Terraform Project
 
-A production-grade, secure VPC implementation on AWS using Terraform, demonstrating defense-in-depth network security principles.
+A production-grade, secure VPC implementation on AWS using Terraform, demonstrating defence-in-depth network security principles.
 
 -------
 
@@ -33,12 +33,12 @@ A production-grade, secure VPC implementation on AWS using Terraform, demonstrat
 - [License](#license)
 ----
 ## Overview
-This project implements a three-tier, highly available VPC architecture on AWS using Terraform. It demonstrates enterprise-level network security practices including network segmentation, defense-in-depth security, and comprehensive monitoring.
+This project implements a three-tier, highly available VPC architecture on AWS using Terraform. It demonstrates enterprise-level network security practices including network segmentation, defence-in-depth security, and comprehensive monitoring.
 
 **Key Highlights**
 **Multi-tier Architecture:** Public, Private, and Database subnet layers
 **High Availability:** Resources deployed across 2 Availability Zones
-**Defense in Depth:** Multiple security layers (NACLs, Security Groups, Flow Logs)
+**Defence in Depth:** Multiple security layers (NACLs, Security Groups, Flow Logs)
 **Full Observability:** VPC Flow Logs with CloudWatch integration
 **Infrastructure as Code:** 100% automated with Terraform
 **Cost Optimized:** Optional NAT Gateway deployment for dev environments
@@ -54,6 +54,7 @@ This project implements a three-tier network architecture with:
 
  **Architecture Diagram**
 
+<img width="700" height="400" alt="gemini-3-pro-image-preview-2k (nano-banana-pro)_b_Create_a_professiona" src="https://github.com/user-attachments/assets/26f9216f-c858-4d81-81de-f44eda7f0970" />
 
 -------
 
