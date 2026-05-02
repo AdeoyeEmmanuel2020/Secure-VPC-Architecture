@@ -77,7 +77,7 @@ This project implements a three-tier network architecture with: <br>
 - **Multi-AZ Deployment:** High availability and fault tolerance
 
 **Security Features** <br>
-- **Security Group Chaining:** Least-privilege access between tiers <br>
+- **Security Group Chaining**: ALB → App → DB (Least-privilege access between tiers) <br>
 - **Network ACLs:** Stateless subnet-level firewall rules <br>
 - **VPC Flow Logs:** Complete network traffic visibility <br>
 - **Private Subnets:** No direct internet access for sensitive workloads <br>
@@ -233,9 +233,9 @@ enable_flow_logs   = true
 |public_subnet_ids|	List of public subnet IDs|
 |private_subnet_ids|	List of private subnet IDs|
 |database_subnet_ids|	List of database subnet IDs|
-|alb_security_group_id|	ALB security group ID|
-|app_security_group_id|	Application security group ID|
-|database_security_group_i|	Database security group ID|
+|alb_sg_id|	ALB security group ID|
+|app_sg_id | Application security group ID |
+| db_sg_id | Database security group ID |
 |nat_gateway_ips|Elastic IPs of NAT Gateways|
 |flow_log_group_name|CloudWatch Log Group name|
 
@@ -531,22 +531,24 @@ Database Route Tables (2):
 **5. Security Group Verification**
 ```bash
 
+5. Security Group Verification
+
 1. Click "Security Groups"
-2. Find 4 security groups
+2. Find 3 security groups
 3. Verify rules:
 
 ALB Security Group:
    Inbound:
-   Port 443 from 0.0.0.0/0
-   Port 80 from 0.0.0.0/0
+    Port 443 from 0.0.0.0/0
+    Port 80 from 0.0.0.0/0
 
 App Security Group:
    Inbound:
-   Port 8080 from ALB SG only
+    Port 8080 from ALB SG only
 
 Database Security Group:
    Inbound:
-   Port 5432 from App SG only
+    Port 5432 from App SG only
 ```
 
 **6. VPC Flow Logs Verification**
@@ -592,13 +594,13 @@ else
     echo "   Expected 6 subnets, found $SUBNET_COUNT"
 fi
 
-# Test 3: NAT Gateway status
-echo "✓ Testing NAT Gateways..."
-NAT_COUNT=$(aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$VPC_ID" "Name=state,Values=available" --query 'NatGateways[*].NatGatewayId' --output text | wc -w)
-if [ $NAT_COUNT -eq 2 ]; then
-    echo "   Found 2 NAT Gateways"
+# Test 4: Security Groups
+echo "✓ Testing Security Groups..."
+SG_COUNT=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$VPC_ID" --query 'SecurityGroups[?GroupName!=`default`].GroupId' --output text | wc -w)
+if [ $SG_COUNT -eq 3 ]; then
+    echo "   Found 3 custom security groups"
 else
-    echo "    Expected 2 NAT Gateways, found $NAT_COUNT"
+    echo "   Expected 3 security groups, found $SG_COUNT"
 fi
 
 # Test 4: Security Groups
@@ -640,7 +642,7 @@ chmod +x tests/verify.sh
 □ Public subnets route to Internet Gateway
 □ Private subnets route to NAT Gateways
 □ Database subnets have no internet route
-□ 4 Security Groups created with correct rules
+□ 3 Security Groups created with correct rules (ALB, App, DB)
 □ 3 Network ACLs configured
 □ VPC Flow Logs enabled and logging to CloudWatch
 □ All resources properly tagged
@@ -699,13 +701,14 @@ terraform destroy
    All 6 subnets deleted
 
 3. NAT Gateways
-   Both NAT Gateways deleted or deleting
+   Both NAT Gateways are deleted or are being deleted
 
 4. Elastic IPs
    No unattached EIPs
 
 5. Security Groups
-   Only default SG remains
+   - All 3 custom security groups (ALB, App, DB) deleted
+   - Only the default SG remains
 
 6. CloudWatch → Log Groups
    Flow log group deleted
