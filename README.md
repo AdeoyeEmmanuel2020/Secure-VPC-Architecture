@@ -12,6 +12,18 @@ A production-grade, secure VPC implementation on AWS using Terraform that demons
 [![Flow Logs](https://img.shields.io/badge/Flow%20Logs-Enabled-blueviolet)]() 
 [![Multi-AZ](https://img.shields.io/badge/Multi--AZ-High%20Availability-green)]()
 
+-----
+## Full Architecture Walkthrough & Production Deployment  
+
+**Click the image below to watch the complete implementation on YouTube:**
+
+<a href="https://www.youtube.com/watch?v=" target="_blank">
+  <img src="https://img.youtube.com/vi//maxresdefault.jpg" 
+       width="700" 
+       height="400" 
+       alt="Complete Kubernetes Deployment on AWS EKS (Production Ready)">
+</a>
+-------
 # Table of Contents
 
 - [Overview](#overview)
@@ -915,3 +927,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+-----
+# **👤** Author
+**Adeoye Emmanuel** - AWS Certified Solutions Architect | AWS Security Solutions Architect | DevSecOps Engineer
+
+**Email:** Emmanuelofgrace@gmail.com
+
+💼 LinkedIn: www.linkedin.com/in/emmanuel-adeoye-29187bb7
+
