@@ -105,8 +105,8 @@ This project implements a three-tier network architecture with: <br>
 |Tool|	Version|	Purpose|
 |----|---------|---------|
 |Terraform|	≥ 1.0|	Infrastructure provisioning|
-|AWS CLI|	≥ 2.0	AWS| authentication|
-|Git|	Latest	|Version control|
+|AWS CLI|	≥ 2.0	|AWS authentication|
+|Git|	Latest Version| control|
 
 **AWS Requirements**
 - AWS Account with administrative access
