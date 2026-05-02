@@ -601,9 +601,9 @@ fi
 echo "✓ Testing NAT Gateways..."
 NAT_COUNT=$(aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$VPC_ID" "Name=state,Values=available" --query 'NatGateways[*].NatGatewayId' --output text | wc -w)
 if [ $NAT_COUNT -eq 2 ]; then
-    echo "  ✅ Found 2 NAT Gateways"
+    echo " Found 2 NAT Gateways"
 else
-    echo "  ⚠️  Expected 2 NAT Gateways, found $NAT_COUNT"
+    echo " Expected 2 NAT Gateways, found $NAT_COUNT"
 fi
 
 
