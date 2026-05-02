@@ -1,0 +1,4 @@
+aws_region         = "us-east-1"
+environment        = "dev"
+enable_nat_gateway = false   # set to false for demo to save cost
+enable_flow_logs   = true
