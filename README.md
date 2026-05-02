@@ -833,21 +833,21 @@ cat terraform-debug.log
 **Skills Demonstrated**
 By completing this project, you demonstrate proficiency in:
 
-**AWS Networking** <br>
+**AWS Networking** 
 - VPC design and architecture <br>
 - Subnet planning and CIDR notation <br>
 - Routing and route table configuration <br>
 - Internet Gateway and NAT Gateway usage <br>
 - Multi-AZ deployment strategies
   
-**Security** <br>
+**Security**
 - Defense-in-depth principles
 - Security group chaining
 - Network ACL configuration
 - Least privilege access control
 - Network segmentation
   
-**Monitoring & Compliance** <br>
+**Monitoring & Compliance**
 - VPC Flow Logs implementation
 - CloudWatch Logs integration
 - Security monitoring and auditing
