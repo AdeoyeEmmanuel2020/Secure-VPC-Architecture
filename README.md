@@ -575,6 +575,7 @@ echo "🔍 Verifying VPC Architecture..."
 # Get VPC ID from Terraform
 VPC_ID=$(terraform output -raw vpc_id)
 
+
 # Test 1: VPC exists
 echo "✓ Testing VPC existence..."
 aws ec2 describe-vpcs --vpc-ids $VPC_ID > /dev/null 2>&1
@@ -585,6 +586,7 @@ else
     exit 1
 fi
 
+
 # Test 2: Count subnets
 echo "✓ Testing subnet count..."
 SUBNET_COUNT=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$VPC_ID" --query 'Subnets[*].SubnetId' --output text | wc -w)
@@ -594,14 +596,16 @@ else
     echo "   Expected 6 subnets, found $SUBNET_COUNT"
 fi
 
-# Test 4: Security Groups
-echo "✓ Testing Security Groups..."
-SG_COUNT=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$VPC_ID" --query 'SecurityGroups[?GroupName!=`default`].GroupId' --output text | wc -w)
-if [ $SG_COUNT -eq 3 ]; then
-    echo "   Found 3 custom security groups"
+
+# Test 3: NAT Gateway status
+echo "✓ Testing NAT Gateways..."
+NAT_COUNT=$(aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$VPC_ID" "Name=state,Values=available" --query 'NatGateways[*].NatGatewayId' --output text | wc -w)
+if [ $NAT_COUNT -eq 2 ]; then
+    echo "  ✅ Found 2 NAT Gateways"
 else
-    echo "   Expected 3 security groups, found $SG_COUNT"
+    echo "  ⚠️  Expected 2 NAT Gateways, found $NAT_COUNT"
 fi
+
 
 # Test 4: Security Groups
 echo "✓ Testing Security Groups..."
@@ -611,6 +615,7 @@ if [ $SG_COUNT -eq 4 ]; then
 else
     echo "   Expected 4 security groups, found $SG_COUNT"
 fi
+
 
 # Test 5: Internet Gateway
 echo "✓ Testing Internet Gateway..."
