@@ -444,13 +444,13 @@ terraform plan
 **Step 5: Deploy Infrastructure**
 ```bash
 
-# Apply configuration
-terraform apply
+Key things to verify in plan:
 
-# Review the plan one more time
-# Type 'yes' to confirm
-
-# Wait 3-5 minutes for creation
+# VPC CIDR: 10.0.0.0/16
+# Subnets: 6 total (2 per tier, 2 AZs)
+# NAT Gateways: 2 (one per AZ)
+# Security Groups: 3 (ALB, App, DB)
+# Flow Logs: Enabled
 ```
 **Deployment Timeline:**
 
