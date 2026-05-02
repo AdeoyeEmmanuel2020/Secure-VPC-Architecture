@@ -551,7 +551,7 @@ Database Security Group:
 ----
  # Verification Steps
 **Automated Tests**
-Create tests/verify.sh:
+Create ```tests/verify.sh:```
 
 ```bash
 
