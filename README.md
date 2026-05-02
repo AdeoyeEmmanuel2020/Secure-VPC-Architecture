@@ -815,7 +815,7 @@ aws ec2 describe-flow-logs --filter "Name=resource-id,Values=$(terraform output 
 # Launch a test EC2 instance and ping google.com
 ```
 
-**Debug Mode**
+**Debug Mode** <bra>
 Enable Terraform debug logging:
 
 ```bash
