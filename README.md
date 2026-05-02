@@ -1,6 +1,6 @@
 # Secure VPC Architecture - AWS Terraform Project
 
-A production-grade, secure VPC implementation on AWS using Terraform, demonstrating defence-in-depth network security principles.
+A production-grade, secure VPC implementation on AWS using Terraform that demonstrates defence-in-depth network security principles.
 
 -------
 
@@ -15,10 +15,10 @@ A production-grade, secure VPC implementation on AWS using Terraform, demonstrat
 # Table of Contents
 
 - [Overview](#overview)
-- [Architecture](#architecture)
+- [Architecture Overview](#architecture-overview)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
-- [Quick Start](#uick-Start)
+- [Quick Start](#Quick-Start)
 - [Project Structure](#project-structure)
 - [Detailed Configuration](#Detailed-Configuration)
 - [Security Implementation](#security-implementation)
@@ -35,57 +35,56 @@ A production-grade, secure VPC implementation on AWS using Terraform, demonstrat
 This project implements a **three-tier, highly available VPC architecture** on AWS using Terraform. It demonstrates enterprise-level network security practices, including network segmentation, defence-in-depth security, and comprehensive monitoring.
 
 **Key Highlights** <br>
-**Multi-tier Architecture:** Public, Private, and Database subnet layers <br>
-**High Availability:** Resources deployed across 2 Availability Zones <br>
-**Defence in Depth:** Multiple security layers (NACLs, Security Groups, Flow Logs) <br>
-**Full Observability:** VPC Flow Logs with CloudWatch integration <br>
-**Infrastructure as Code:** 100% automated with Terraform <br>
-**Cost Optimised:** Optional NAT Gateway deployment for dev environments
+- **Multi-tier Architecture:** Public, Private, and Database subnet layers <br>
+- **High Availability:** Resources deployed across 2 Availability Zones <br>
+- **Defence in Depth:** Multiple security layers (NACLs, Security Groups, Flow Logs) <br>
+- **Full Observability:** VPC Flow Logs with CloudWatch integration <br>
+- **Infrastructure as Code:** 100% automated with Terraform <br>
+- **Cost Optimised:** Optional NAT Gateway deployment for dev environments
 
 ------
-## Architecture Overview
+# Architecture Overview
 
-This project implements a three-tier network architecture with:
+This project implements a three-tier network architecture with: <br>
 
-- **Public Tier**: Internet-facing resources (NAT Gateways, Load Balancers)
-- **Private Tier**: Application servers (no direct internet access)
+- **Public Tier**: Internet-facing resources (NAT Gateways, Load Balancers) <br>
+- **Private Tier**: Application servers (no direct internet access) <br>
 - **Database Tier**: Data layer (fully isolated)
 
- **Architecture Diagram**
+ ### Architecture Diagram
 
 <img width="700" height="400" alt="gemini-3-pro-image-preview-2k (nano-banana-pro)_b_Create_a_professiona" src="https://github.com/user-attachments/assets/26f9216f-c858-4d81-81de-f44eda7f0970" />
 
 -------
-
-## Features
+# Features
 **Network Architecture** <br>
-**VPC:** Isolated virtual network (10.0.0.0/16) <br>
-**6 Subnets:** 2 public, 2 private, 2 database (across 2 AZs) <br>
-**Internet Gateway:** Public internet access for public subnets <br>
-**2 NAT Gateways:** Secure outbound internet for private subnets <br>
-**7 Route Tables:** Proper traffic routing per subnet tier <br>
-**Multi-AZ Deployment:** High availability and fault tolerance
+- **VPC:** Isolated virtual network (10.0.0.0/16) <br>
+- **6 Subnets:** 2 public, 2 private, 2 database (across 2 AZs) <br>
+- **Internet Gateway:** Public internet access for public subnets <br>
+- **2 NAT Gateways:** Secure outbound internet for private subnets <br>
+- **7 Route Tables:** Proper traffic routing per subnet tier <br>
+- **Multi-AZ Deployment:** High availability and fault tolerance
 
-**Security Features**
-Security Group Chaining: Least-privilege access between tiers
-Network ACLs: Stateless subnet-level firewall rules
-VPC Flow Logs: Complete network traffic visibility
-Private Subnets: No direct internet access for sensitive workloads
-Database Isolation: Completely isolated database tier
-Defence in Depth: Multiple overlapping security controls
+**Security Features** <br>
+- **Security Group Chaining:** Least-privilege access between tiers <br>
+- **Network ACLs:** Stateless subnet-level firewall rules <br>
+- **VPC Flow Logs:** Complete network traffic visibility <br>
+- **Private Subnets:** No direct internet access for sensitive workloads <br>
+- **Database Isolation:** Completely isolated database tier <br>
+- **Defence in Depth:** Multiple overlapping security controls
 
-**Monitoring & Compliance**
-VPC Flow Logs: All network traffic logged to CloudWatch
-CloudWatch Integration: 30-day log retention
-IAM Roles: Least-privilege permissions for logging
-Tagging Strategy: Comprehensive resource tagging
+**Monitoring & Compliance** <br>
+- **VPC Flow Logs:** All network traffic logged to CloudWatch <br>
+- **CloudWatch Integration:** 30-day log retention <br>
+- **IAM Roles:** Least-privilege permissions for logging <br>
+- **Tagging Strategy:** Comprehensive resource tagging
 
-**Infrastructure as Code**
-Terraform Modules: Reusable, modular code
-Variables: Easy customization via terraform.tfvars
-Outputs: Export values for integration
-State Management: Terraform state tracking
-Version Control: Git-friendly structure
+**Infrastructure as Code** <br>
+- **Terraform Modules:** Reusable, modular code <br>
+- **Variables:** Easy customization via terraform.tfvars <br>
+- **Outputs:** Export values for integration <br>
+- **State Management:** Terraform state tracking <br>
+- **Version Control:** Git-friendly structure
 
 -----
 ## Prerequisites
@@ -97,14 +96,14 @@ Version Control: Git-friendly structure
 |Git|	Latest	|Version control|
 
 **AWS Requirements**
-AWS Account with administrative access
-AWS CLI configured with credentials
-**Permissions to create:**
-VPC, Subnets, Route Tables
-Internet Gateway, NAT Gateway
-Security Groups, Network ACLs
-CloudWatch Logs, IAM Roles
-Elastic IPs
+- AWS Account with administrative access
+- AWS CLI configured with credentials
+  **Permissions to create:**
+   - VPC, Subnets, Route Tables
+   - Internet Gateway, NAT Gateway
+   - Security Groups, Network ACLs
+   - CloudWatch Logs, IAM Roles
+   - Elastic IPs
 
 **Verify Prerequisites**
 ```bash
@@ -165,7 +164,7 @@ terraform output
 
 terraform destroy
 ```
-Type yes when prompted.
+Type **yes** when prompted.
 
 ----
 ## Project Structure
@@ -225,7 +224,7 @@ enable_flow_logs   = true
 |database_subnet_ids|	List of database subnet IDs|
 |alb_security_group_id|	ALB security group ID|
 |app_security_group_id|	Application security group ID|
-|database_security_group_i	Database security group ID|
+|database_security_group_i|	Database security group ID|
 |nat_gateway_ips|Elastic IPs of NAT Gateways|
 |flow_log_group_name|CloudWatch Log Group name|
 
@@ -247,7 +246,7 @@ Inbound:
 Outbound:
   Rule 100: Allow all traffic to 0.0.0.0/0
 ```
-**Private Subnet NACL:*
+**Private Subnet NACL:**
 ```bash
 
 Inbound:
@@ -270,17 +269,17 @@ Layer 2: Security Groups (Instance-level)
 ```
 
 **ALB Security Group:**
-Inbound: Port 443 (HTTPS) from 0.0.0.0/0
-Inbound: Port 80 (HTTP) from 0.0.0.0/0
-Outbound: All traffic
-
+- Inbound: Port 443 (HTTPS) from 0.0.0.0/0
+- Inbound: Port 80 (HTTP) from 0.0.0.0/0
+- Outbound: All traffic
+  
 **App Security Group:**
-Inbound: Port 8080 from ALB Security Group only
-Outbound: All traffic
+- Inbound: Port 8080 from ALB Security Group only
+- Outbound: All traffic
 
 **Database Security Group:**
-Inbound: Port 5432 (PostgreSQL) from App Security Group only
-Outbound: All traffic
+- Inbound: Port 5432 (PostgreSQL) from App Security Group only
+- Outbound: All traffic
 
 **Security Group Chaining:**
 ```bash
@@ -288,12 +287,12 @@ Internet → ALB SG → App SG → DB SG
 ```
 **Layer 3: VPC Flow Logs**
 **What's Logged:**
-Source/Destination IP addresses
-Source/Destination ports
-Protocol (TCP/UDP/ICMP)
-Packet and byte counts
-Action (ACCEPT/REJECT)
-Log status
+- Source/Destination IP addresses
+- Source/Destination ports
+- Protocol (TCP/UDP/ICMP)
+- Packet and byte counts
+- Action (ACCEPT/REJECT)
+- Log status
 
 **Sample Flow Log Entry:**
 
@@ -303,19 +302,19 @@ Log status
 ```
 
 **Use Cases:**
-Detect unauthorized access attempts
-Troubleshoot connectivity issues
-Compliance auditing (PCI-DSS, HIPAA, SOC 2)
-Security incident investigation
+- Detect unauthorised access attempts
+- Troubleshoot connectivity issues
+- Compliance auditing (PCI-DSS, HIPAA, SOC 2)
+- Security incident investigation
 
-**Security Best Practices Implemented**
-Least Privilege: Security groups only allow necessary traffic
-Network Segmentation: Three distinct tiers with isolation
-No Direct Internet Access: Private/DB subnets use NAT Gateway
-Monitoring: All traffic logged for analysis
-Multi-AZ: No single point of failure
-Encryption Ready: VPC supports encryption at rest/in transit
-Bastion Host Ready: Security group prepared for jump box
+**Security Best Practices Implemented** <br>
+**Least Privilege:** Security groups only allow necessary traffic <br>
+**Network Segmentation:** Three distinct tiers with isolation <br>
+**No Direct Internet Access:** Private/DB subnets use NAT Gateway <br>
+**Monitoring:** All traffic logged for analysis <br>
+**Multi-AZ:** No single point of failure <br>
+**Encryption Ready:** VPC supports encryption at rest/in transit <br>
+**Bastion Host Ready:** Security group prepared for jump box
 
 -------
 ## Cost Estimation
@@ -330,7 +329,7 @@ Bastion Host Ready: Security group prepared for jump box
 |Network ACLs|	3|	$0.00|	$0.00|
 |NAT Gateway|	2|	$0.045/hr|	$64.80|
 |Elastic IPs|	2|	$0.00 (attached)|	$0.00|
-|VPC Flow Logs|	|-|	~$0.50/GB|	$5-10|
+|VPC Flow Logs|	-|	~$0.50/GB|	$5-10|
 |CloudWatch Logs|	-|	$0.03/GB (storage)|	$2-5|
 | | |TOTAL|	~$72-80/month
 
@@ -353,11 +352,11 @@ enable_flow_logs   = true   # Required for compliance
 ```
 **Production Cost: ~$75/month**
 
-**Additional Cost Considerations**
-NAT Gateway Data Processing: $0.045 per GB processed
-Data Transfer: $0.09 per GB outbound (after 1 GB free)
-CloudWatch Logs Ingestion: First 5GB free, then $0.50/GB
-Flow Logs Storage: $0.03 per GB stored
+**Additional Cost Considerations** <br>
+- **NAT Gateway Data Processing:** $0.045 per GB processed <br>
+- **Data Transfer:** $0.09 per GB outbound (after 1 GB free) <br>
+- **CloudWatch Logs Ingestion:** First 5GB free, then $0.50/GB <br>
+- **Flow Logs Storage:** $0.03 per GB stored
 
 **Cost Monitoring**
 ```bash
@@ -373,11 +372,12 @@ aws ce get-cost-and-usage \
   --metrics "BlendedCost" "UnblendedCost" \
   --group-by Type=DIMENSION,Key=SERVICE
 ```
-## Deployment Guide
-**Step-by-Step Deployment**
+-----
+# Deployment Guide
+**Step-by-Step Deployment** <br>
 **Step 1: Preparation**
-```bash
 
+```bash
 # Clone repository
 git clone https://github.com/YOUR-USERNAME/secure-vpc-project.git
 cd secure-vpc-project
@@ -424,11 +424,11 @@ terraform plan
 # - Security groups, route tables, etc.
 ```
 **Key things to verify in plan:**
-VPC CIDR: 10.0.0.0/16
-Subnets: 6 total (2 per tier, 2 AZs)
-NAT Gateways: 2 (one per AZ)
-Security Groups: 4 (ALB, App, DB, Bastion)
-Flow Logs: Enabled
+- **VPC CIDR:** 10.0.0.0/16
+- **Subnets:** 6 total (2 per tier, 2 AZs)
+- **NAT Gateways:** 2 (one per AZ)
+- **Security Groups:** 4 (ALB, App, DB, Bastion)
+- **Flow Logs:** Enabled
 
 **Step 5: Deploy Infrastructure**
 ```bash
@@ -443,10 +443,10 @@ terraform apply
 ```
 **Deployment Timeline:**
 
-VPC, Subnets, IGW: ~30 seconds
-NAT Gateways, EIPs: ~2-3 minutes
-Security Groups, NACLs: ~30 seconds
-Flow Logs, IAM: ~1 minute
+- **VPC, Subnets, IGW:** ~30 seconds
+- **NAT Gateways, EIPs:** ~2-3 minutes
+- **Security Groups, NACLs:** ~30 seconds
+- **Flow Logs, IAM:** ~1 minute
 
 
 **Step 6: Verify Outputs**
@@ -498,7 +498,6 @@ terraform output -json > outputs.json
    Status: Available
    Each has an Elastic IP
 ```
-**
 **4. Route Table Verification**
 ```bash
 
@@ -549,90 +548,364 @@ Database Security Group:
    Retention: 30 days
    Log streams appear (after 5-10 min)
 ```
+----
+ # Verification Steps
+**Automated Tests**
+Create tests/verify.sh:
 
-
-
-
-
-
-
-
-
-
-
-## Deployment
-
- **Prerequisites**
-- AWS Account with appropriate permissions
-- Terraform >= 1.0
-- AWS CLI configured with credentials
-
-**Steps**
-
-**1. Clone the repository**
 ```bash
-git clone https://github.com/Terraform/secure-vpc-project.git
-cd secure-vpc-project
+
+#!/bin/bash
+
+echo "🔍 Verifying VPC Architecture..."
+
+# Get VPC ID from Terraform
+VPC_ID=$(terraform output -raw vpc_id)
+
+# Test 1: VPC exists
+echo "✓ Testing VPC existence..."
+aws ec2 describe-vpcs --vpc-ids $VPC_ID > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo "  ✅ VPC exists: $VPC_ID"
+else
+    echo "  ❌ VPC not found"
+    exit 1
+fi
+
+# Test 2: Count subnets
+echo "✓ Testing subnet count..."
+SUBNET_COUNT=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$VPC_ID" --query 'Subnets[*].SubnetId' --output text | wc -w)
+if [ $SUBNET_COUNT -eq 6 ]; then
+    echo "  ✅ Found 6 subnets"
+else
+    echo "  ❌ Expected 6 subnets, found $SUBNET_COUNT"
+fi
+
+# Test 3: NAT Gateway status
+echo "✓ Testing NAT Gateways..."
+NAT_COUNT=$(aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$VPC_ID" "Name=state,Values=available" --query 'NatGateways[*].NatGatewayId' --output text | wc -w)
+if [ $NAT_COUNT -eq 2 ]; then
+    echo "  ✅ Found 2 NAT Gateways"
+else
+    echo "  ⚠️  Expected 2 NAT Gateways, found $NAT_COUNT"
+fi
+
+# Test 4: Security Groups
+echo "✓ Testing Security Groups..."
+SG_COUNT=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$VPC_ID" --query 'SecurityGroups[?GroupName!=`default`].GroupId' --output text | wc -w)
+if [ $SG_COUNT -eq 4 ]; then
+    echo "  ✅ Found 4 custom security groups"
+else
+    echo "  ❌ Expected 4 security groups, found $SG_COUNT"
+fi
+
+# Test 5: Internet Gateway
+echo "✓ Testing Internet Gateway..."
+IGW_COUNT=$(aws ec2 describe-internet-gateways --filters "Name=attachment.vpc-id,Values=$VPC_ID" --query 'InternetGateways[*].InternetGatewayId' --output text | wc -w)
+if [ $IGW_COUNT -eq 1 ]; then
+    echo "  ✅ Found Internet Gateway"
+else
+    echo "  ❌ Internet Gateway not found"
+fi
+
+echo ""
+echo "🎉 Verification complete!"
 ```
-**2. Initialize Terraform**
-```bash
-terraform init
-```
-**3. Review the plan**
-```bash
-terraform plan
-```
-**4. Deploy infrastructure**
-```bash
-terraform apply
-```
-**Verify in AWS Console**
-VPC Dashboard: Confirm VPC creation
-Subnets: Verify 6 subnets across 2 AZs
-Route Tables: Check routing configuration
-Security Groups: Validate security group rules
-CloudWatch: Check VPC Flow Logs
-
-**Clean Up**
+**Run verification:**
 
 ```bash
+
+chmod +x tests/verify.sh
+./tests/verify.sh
+```
+**Manual Verification Checklist**
+```bash
+
+□ VPC created with correct CIDR (10.0.0.0/16)
+□ 6 subnets created (2 public, 2 private, 2 database)
+□ Subnets distributed across 2 AZs
+□ Internet Gateway attached to VPC
+□ 2 NAT Gateways in public subnets
+□ Public subnets route to Internet Gateway
+□ Private subnets route to NAT Gateways
+□ Database subnets have no internet route
+□ 4 Security Groups created with correct rules
+□ 3 Network ACLs configured
+□ VPC Flow Logs enabled and logging to CloudWatch
+□ All resources properly tagged
+```
+-----
+# Cleanup
+**Complete Cleanup**
+```bash
+
+# Destroy all resources
+terraform destroy
+
+# Review destruction plan
+# Type 'yes' to confirm
+
+# Wait 3-5 minutes for deletion
+```
+**Verify Cleanup**
+```bash
+
+# Check if VPC still exists (should return empty)
+VPC_ID=$(terraform output -raw vpc_id 2>/dev/null)
+aws ec2 describe-vpcs --vpc-ids $VPC_ID 2>&1 | grep -q "InvalidVpcID.NotFound"
+if [ $? -eq 0 ]; then
+    echo "✅ VPC successfully deleted"
+else
+    echo "⚠️  VPC may still exist"
+fi
+```
+**Manual Cleanup (if needed)**
+If terraform destroy fails:
+
+```bash
+
+# 1. Delete NAT Gateways manually
+aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$VPC_ID" --query 'NatGateways[*].NatGatewayId' --output text | \
+xargs -I {} aws ec2 delete-nat-gateway --nat-gateway-id {}
+
+# 2. Wait 5 minutes for NAT Gateways to delete
+
+# 3. Release Elastic IPs
+aws ec2 describe-addresses --filters "Name=domain,Values=vpc" --query 'Addresses[*].AllocationId' --output text | \
+xargs -I {} aws ec2 release-address --allocation-id {}
+
+# 4. Try terraform destroy again
 terraform destroy
 ```
------
-## Cost Considerations
 
-|Resource|	Estimated Monthly Cost|
-|--------|------------------------|
-|NAT Gateway (×2)|	~$64|
-|VPC Flow Logs (CloudWatch)|	~$5-10|
-|VPC, Subnets, IGW, Route Tables, SGs|	$0|
-|Total	|~$70-75/month|
+**AWS Console Cleanup Verification**
+```bash
 
-**Cost Optimization Tips:**
-Set enable_nat_gateway = false for development
-Adjust Flow Logs retention period
-Use VPC endpoints for AWS services to reduce NAT Gateway traffic
+1. VPC Dashboard → Your VPCs
+   secure-vpc-dev should be gone
 
------
-## Resources Created
-1 VPC
-6 Subnets (2 public, 2 private, 2 database)
-1 Internet Gateway
-2 NAT Gateways
-2 Elastic IPs
-7 Route Tables
-4 Security Groups
-3 Network ACLs
-VPC Flow Logs (CloudWatch Log Group + IAM Role)
+2. Subnets
+   All 6 subnets deleted
 
------
-## Learning Outcomes
-This project demonstrates:
-Network Architecture: Multi-tier VPC design
-High Availability: Multi-AZ deployment
-Security Best Practices: Defense in depth, least privilege
-Infrastructure as Code: Terraform modules and resources
-AWS Networking: VPC, subnets, routing, NAT, security groups
-Monitoring: VPC Flow Logs for network visibility
+3. NAT Gateways
+   Both NAT Gateways deleted or deleting
 
+4. Elastic IPs
+   No unattached EIPs
+
+5. Security Groups
+   Only default SG remains
+
+6. CloudWatch → Log Groups
+   Flow log group deleted
+```
 ----
+# Troubleshooting
+**Common Issues and Solutions**
+**Issue 1: NAT Gateway Quota Exceeded**
+**Error:**
+```bash
+
+Error: Error creating NAT Gateway: NatGatewayLimitExceeded
+```
+**Solution:**
+
+```bash
+
+# Check current NAT Gateway usage
+aws ec2 describe-nat-gateways --query 'NatGateways[?State==`available`]' --output table
+
+# Request quota increase
+aws service-quotas request-service-quota-increase \
+  --service-code vpc \
+  --quota-code L-FE5A380F \
+  --desired-value 10
+
+# OR disable NAT Gateways for dev
+# In terraform.tfvars:
+enable_nat_gateway = false
+```
+**Issue 2: Terraform State Lock**
+**Error:**
+
+```bash
+
+Error: Error acquiring the state lock
+```
+**Solution:**
+
+```bash
+
+# If using local state
+rm -rf .terraform/terraform.tfstate.lock.info
+
+# If using remote state (S3)
+aws dynamodb delete-item \
+  --table-name terraform-state-lock \
+  --key '{"LockID": {"S": "your-state-bucket/terraform.tfstate"}}'
+```
+
+**Issue 3: Insufficient IAM Permissions**
+**Error:**
+
+```bash
+
+Error: UnauthorizedOperation: You are not authorized to perform this operation
+```
+**Solution:**
+
+```bash
+
+// Required IAM permissions (attach to your user/role)
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:*",
+        "logs:*",
+        "iam:CreateRole",
+        "iam:PutRolePolicy",
+        "iam:AttachRolePolicy"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+**Issue 4: Destroy Fails Due to Dependencies**
+**Error:**
+```bash
+
+Error: error deleting VPC: DependencyViolation
+```
+**Solution:**
+
+```bash
+
+# 1. Delete NAT Gateways first (they take longest)
+terraform destroy -target=aws_nat_gateway.main
+terraform destroy -target=aws_eip.nat
+
+# 2. Wait 5 minutes
+
+# 3. Destroy everything else
+terraform destroy
+```
+
+**Issue 5: Flow Logs Not Appearing**
+**Issue:** VPC Flow Logs enabled but no logs in CloudWatch
+
+**Solution:**
+
+```bash
+
+# Wait 10-15 minutes for first logs to appear
+
+# Check IAM role permissions
+aws iam get-role-policy \
+  --role-name $(terraform output -raw flow_log_role_name) \
+  --policy-name VPCFlowLogsPolicy
+
+# Check Flow Log status
+aws ec2 describe-flow-logs --filter "Name=resource-id,Values=$(terraform output -raw vpc_id)"
+
+# Generate some traffic to trigger logs
+# Launch a test EC2 instance and ping google.com
+```
+
+**Debug Mode**
+Enable Terraform debug logging:
+
+```bash
+
+export TF_LOG=DEBUG
+export TF_LOG_PATH=terraform-debug.log
+
+terraform apply
+
+# View logs
+cat terraform-debug.log
+```
+------
+# Learning Outcomes
+**Skills Demonstrated**
+By completing this project, you demonstrate proficiency in:
+
+**AWS Networking** <br>
+- VPC design and architecture <br>
+- Subnet planning and CIDR notation <br>
+- Routing and route table configuration <br>
+- Internet Gateway and NAT Gateway usage <br>
+- Multi-AZ deployment strategies <br>
+**Security** <br>
+- Defense-in-depth principles
+- Security group chaining
+- Network ACL configuration
+- Least privilege access control
+- Network segmentation
+**Monitoring & Compliance**
+- VPC Flow Logs implementation
+- CloudWatch Logs integration
+- Security monitoring and auditing
+- Compliance logging (PCI-DSS, HIPAA)
+**Infrastructure as Code**
+- Terraform best practices
+- Module organisation
+- Variable management
+- State management
+- Resource dependencies
+**Cloud Architecture**
+- High availability design
+- Fault tolerance
+- Scalability considerations
+- Cost optimization
+-----
+# Contributing
+Contributions are welcome! Please follow these guidelines:
+
+**Reporting Issues**
+- GitHub Issues
+- Include Terraform version, AWS region, and error messages
+- Provide steps to reproduce
+**Pull Requests**
+1. Fork the repository
+2. Create a feature branch ``` (git checkout -b feature/improvement) ```
+3. Make your changes
+4. Test thoroughly
+5. Commit with clear messages ``` (git commit -m 'Add feature X') ```
+6. Push to your fork ```(git push origin feature/improvement) ```
+7. Open a Pull Request
+**Code Standards**
+- Follow Terraform best practice
+- Add comments for complex logic
+- Update README.md if adding features
+- Test with ```terraform validate ``` and ```terraform plan```
+----
+# License
+This project is licensed under the MIT License
+```bash
+
+MIT License
+
+Copyright (c) 2025 [Adeoye Emmanuel Eniola]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
