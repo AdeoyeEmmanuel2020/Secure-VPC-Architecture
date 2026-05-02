@@ -579,9 +579,9 @@ VPC_ID=$(terraform output -raw vpc_id)
 echo "✓ Testing VPC existence..."
 aws ec2 describe-vpcs --vpc-ids $VPC_ID > /dev/null 2>&1
 if [ $? -eq 0 ]; then
-    echo "  ✅ VPC exists: $VPC_ID"
+    echo "   VPC exists: $VPC_ID"
 else
-    echo "  ❌ VPC not found"
+    echo "   VPC not found"
     exit 1
 fi
 
@@ -589,40 +589,40 @@ fi
 echo "✓ Testing subnet count..."
 SUBNET_COUNT=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$VPC_ID" --query 'Subnets[*].SubnetId' --output text | wc -w)
 if [ $SUBNET_COUNT -eq 6 ]; then
-    echo "  ✅ Found 6 subnets"
+    echo "   Found 6 subnets"
 else
-    echo "  ❌ Expected 6 subnets, found $SUBNET_COUNT"
+    echo "   Expected 6 subnets, found $SUBNET_COUNT"
 fi
 
 # Test 3: NAT Gateway status
 echo "✓ Testing NAT Gateways..."
 NAT_COUNT=$(aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$VPC_ID" "Name=state,Values=available" --query 'NatGateways[*].NatGatewayId' --output text | wc -w)
 if [ $NAT_COUNT -eq 2 ]; then
-    echo "  ✅ Found 2 NAT Gateways"
+    echo "   Found 2 NAT Gateways"
 else
-    echo "  ⚠️  Expected 2 NAT Gateways, found $NAT_COUNT"
+    echo "    Expected 2 NAT Gateways, found $NAT_COUNT"
 fi
 
 # Test 4: Security Groups
 echo "✓ Testing Security Groups..."
 SG_COUNT=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$VPC_ID" --query 'SecurityGroups[?GroupName!=`default`].GroupId' --output text | wc -w)
 if [ $SG_COUNT -eq 4 ]; then
-    echo "  ✅ Found 4 custom security groups"
+    echo "   Found 4 custom security groups"
 else
-    echo "  ❌ Expected 4 security groups, found $SG_COUNT"
+    echo "   Expected 4 security groups, found $SG_COUNT"
 fi
 
 # Test 5: Internet Gateway
 echo "✓ Testing Internet Gateway..."
 IGW_COUNT=$(aws ec2 describe-internet-gateways --filters "Name=attachment.vpc-id,Values=$VPC_ID" --query 'InternetGateways[*].InternetGatewayId' --output text | wc -w)
 if [ $IGW_COUNT -eq 1 ]; then
-    echo "  ✅ Found Internet Gateway"
+    echo "   Found Internet Gateway"
 else
-    echo "  ❌ Internet Gateway not found"
+    echo "   Internet Gateway not found"
 fi
 
 echo ""
-echo "🎉 Verification complete!"
+echo " Verification complete!"
 ```
 **Run verification:**
 
@@ -667,9 +667,9 @@ terraform destroy
 VPC_ID=$(terraform output -raw vpc_id 2>/dev/null)
 aws ec2 describe-vpcs --vpc-ids $VPC_ID 2>&1 | grep -q "InvalidVpcID.NotFound"
 if [ $? -eq 0 ]; then
-    echo "✅ VPC successfully deleted"
+    echo "VPC successfully deleted"
 else
-    echo "⚠️  VPC may still exist"
+    echo "VPC may still exist"
 fi
 ```
 **Manual Cleanup (if needed)**
