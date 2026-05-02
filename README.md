@@ -873,6 +873,7 @@ Contributions are welcome! Please follow these guidelines:
 - GitHub Issues
 - Include Terraform version, AWS region, and error messages
 - Provide steps to reproduce
+  
 **Pull Requests**
 1. Fork the repository
 2. Create a feature branch ``` (git checkout -b feature/improvement) ```
@@ -881,6 +882,7 @@ Contributions are welcome! Please follow these guidelines:
 5. Commit with clear messages ``` (git commit -m 'Add feature X') ```
 6. Push to your fork ```(git push origin feature/improvement) ```
 7. Open a Pull Request
+   
 **Code Standards**
 - Follow Terraform best practice
 - Add comments for complex logic
