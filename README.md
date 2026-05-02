@@ -21,8 +21,9 @@ A production-grade, secure VPC implementation on AWS using Terraform that demons
   <img src="https://img.youtube.com/vi//maxresdefault.jpg" 
        width="700" 
        height="400" 
-       alt="Complete Kubernetes Deployment on AWS EKS (Production Ready)">
+       alt="Secure VPC Architecture - AWS Terraform Project">
 </a>
+
 -------
 # Table of Contents
 
