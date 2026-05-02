@@ -2,7 +2,7 @@
 
 A production-grade, secure VPC implementation on AWS using Terraform that demonstrates defence-in-depth network security principles.
 
--
+--
 
 [![Terraform](https://img.shields.io/badge/Terraform-1.0+-623CE4?logo=terraform)](https://www.terraform.io/) 
 [![AWS VPC](https://img.shields.io/badge/AWS-VPC-FF9900?logo=amazonaws)](https://aws.amazon.com/vpc/) 
