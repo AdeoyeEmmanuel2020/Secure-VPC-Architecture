@@ -918,5 +918,5 @@ SOFTWARE.
 
 **Email:** Emmanuelofgrace@gmail.com
 
-💼 LinkedIn: www.linkedin.com/in/emmanuel-adeoye-29187bb7
+LinkedIn: www.linkedin.com/in/emmanuel-adeoye-29187bb7
 
