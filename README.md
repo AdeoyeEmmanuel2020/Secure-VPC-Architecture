@@ -1,4 +1,4 @@
-<img width="1430" height="754" alt="20-ebs-volume-encrypted" src="https://github.com/user-attachments/assets/5e84380d-254e-486f-a496-2220231f3501" /># Secure VPC Architecture - AWS Terraform Project
+# Secure VPC Architecture - AWS Terraform Project
 
 A production-grade, secure VPC implementation on AWS using Terraform that demonstrates defence-in-depth network security principles.
 
