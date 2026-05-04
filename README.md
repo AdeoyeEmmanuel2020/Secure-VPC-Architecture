@@ -1,4 +1,4 @@
-# Secure VPC Architecture - AWS Terraform Project
+<img width="1430" height="754" alt="20-ebs-volume-encrypted" src="https://github.com/user-attachments/assets/5e84380d-254e-486f-a496-2220231f3501" /># Secure VPC Architecture - AWS Terraform Project
 
 A production-grade, secure VPC implementation on AWS using Terraform that demonstrates defence-in-depth network security principles.
 
@@ -885,6 +885,14 @@ By completing this project, you demonstrate proficiency in:
 - Scalability considerations
 - Cost optimization
 -----
+# **👤** Author
+**Adeoye Emmanuel** - AWS Certified Solutions Architect | AWS Security Solutions Architect | DevSecOps Engineer
+
+**Email:** Emmanuelofgrace@gmail.com
+
+LinkedIn: www.linkedin.com/in/emmanuel-adeoye-29187bb7
+
+------
 
 # License
 This project is licensed under the MIT License
@@ -912,11 +920,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
------
-# **👤** Author
-**Adeoye Emmanuel** - AWS Certified Solutions Architect | AWS Security Solutions Architect | DevSecOps Engineer
-
-**Email:** Emmanuelofgrace@gmail.com
-
-LinkedIn: www.linkedin.com/in/emmanuel-adeoye-29187bb7
 
