@@ -885,7 +885,7 @@ By completing this project, you demonstrate proficiency in:
 - Scalability considerations
 - Cost optimization
 -----
-# **👤** Author
+# Author
 **Adeoye Emmanuel** - AWS Certified Solutions Architect | AWS Security Solutions Architect | DevSecOps Engineer
 
 **Email:** Emmanuelofgrace@gmail.com
