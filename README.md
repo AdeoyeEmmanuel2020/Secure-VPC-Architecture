@@ -10,18 +10,6 @@ A production-grade, secure VPC implementation on AWS using Terraform that demons
 [![Flow Logs](https://img.shields.io/badge/Flow%20Logs-Enabled-blueviolet)]() 
 [![Multi-AZ](https://img.shields.io/badge/Multi--AZ-High%20Availability-green)]()
 
------
-## Full Architecture Walkthrough & Production Deployment  
-
-**Click the image below to watch the complete implementation on YouTube:**
-
-<a href="https://www.youtube.com/watch?v=" target="_blank">
-  <img src="https://img.youtube.com/vi//maxresdefault.jpg" 
-       width="700" 
-       height="400" 
-       alt="Secure VPC Architecture - AWS Terraform Project">
-</a>
-
 -------
 # Table of Contents
 
@@ -54,6 +42,20 @@ This project implements a **three-tier, highly available VPC architecture** on A
 - **Cost Optimised:** Optional NAT Gateway deployment for dev environments
 
 ------
+
+## Full Architecture Walkthrough & Production Deployment  
+
+**Click the image below to watch the complete implementation on YouTube:**
+
+<a href="https://www.youtube.com/watch?v=" target="_blank">
+  <img src="https://img.youtube.com/vi//maxresdefault.jpg" 
+       width="700" 
+       height="400" 
+       alt="Secure VPC Architecture - AWS Terraform Project">
+</a>
+
+-------
+
 # Architecture Overview
 
 This project implements a three-tier network architecture with: <br>
